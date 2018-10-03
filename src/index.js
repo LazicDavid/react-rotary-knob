@@ -53,6 +53,7 @@ type KnobProps = {
   skin: Skin,
   format: (val: number) => string,
   onChange: (val: number) => void,
+  onEnd(): void,
   style: any,
   preciseMode: boolean,
   unlockDistance: number,
@@ -100,6 +101,7 @@ class Knob extends Component<KnobProps, KnobState> {
     min: 0,
     max: 100,
     onChange: function() {},
+    onEnd: function () {},
     skin: defaultSkin,
     format: (val: number) => {
       return val.toFixed(0);
@@ -273,6 +275,7 @@ class Knob extends Component<KnobProps, KnobState> {
       function ended() {
         elem.classed("dragging", false);
         self.setState({ ...self.state, dragging: false });
+        self.props.onEnd();
 
         //focus input so it can be moved with arrows
         self.inputRef.focus();
