@@ -5051,6 +5051,7 @@ var Knob = function (_Component) {
         var initialAngle = self.scale(value);
         vbox = elem.node().getBoundingClientRect();
         elem.classed("dragging", true);
+        self.props.onStart();
         _d3Selection.event.on("drag", dragged).on("end", ended);
         //startPos = position relative to the box center
         //Note: the d3 event container is the same element, so coordinates
@@ -5173,12 +5174,14 @@ var Knob = function (_Component) {
           min = _props.min,
           max = _props.max,
           onChange = _props.onChange,
+          onStart = _props.onStart,
+          onEnd = _props.onEnd,
           skin = _props.skin,
           style = _props.style,
           format = _props.format,
           preciseMode = _props.preciseMode,
           unlockDistance = _props.unlockDistance,
-          rest = _objectWithoutProperties(_props, ["value", "defaultValue", "min", "max", "onChange", "skin", "style", "format", "preciseMode", "unlockDistance"]);
+          rest = _objectWithoutProperties(_props, ["value", "defaultValue", "min", "max", "onChange", "onStart", "onEnd", "skin", "style", "format", "preciseMode", "unlockDistance"]);
 
       var currentValue = this.getValue();
       var angle = this.scale(currentValue);
